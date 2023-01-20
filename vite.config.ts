@@ -20,7 +20,7 @@ export default defineConfig({
         [
           /^pb-(.*)$/,
           ([, c]) =>
-            `bg-gradient-to-b from-${c}-700 via-${c}-600 to-${c}-700 h-12 transition-[width] duration-[2s] backface-hidden justify-center`,
+            `bg-gradient-to-r from-${c}-700 via-${c}-600 to-${c}-700 h-12 transition-[width] duration-[2s] backface-hidden justify-center`,
         ],
       ],
     }),
