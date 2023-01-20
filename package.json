@@ -6,7 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "configure": "ejs ./firestore.rules.ejs -f ./src/email.json -o firestore.rules",
+    "deploy:firebase": "firebase deploy",
+    "deploy": "pnpm run build && pnpm run configure && pnpm run deploy:firebase"
   },
   "dependencies": {
     "clsx": "^1.2.1",

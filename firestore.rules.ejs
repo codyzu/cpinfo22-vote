@@ -1,0 +1,24 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+  	match /votes/{userId} {
+    	function isValid() {
+      	return request.resource.data.keys().hasAll(['vote'])
+        	&& request.resource.data.vote is string
+        	&& (request.resource.data.vote == 'exam' || request.resource.data.vote == 'hackathon');
+    	}
+      
+      function isAuthenticated() {
+      	return request.auth != null
+          && (<%- emails.map(email => `request.auth.token.email.matches('.*${email.replaceAll('.', '[.]')}')`).join(' || ') %>);
+      }
+      
+      allow read: if true;
+      // allow update: if isAuthenticated() && request.auth.uid == userId	&& isValid();
+      // allow delete: if isAuthenticated() && request.auth.uid == userId;
+      // allow create: if isAuthenticated() && isValid();
+      allow write: if isAuthenticated() && request.auth.token.email == userId && isValid();
+      // allow write: if false;
+    }
+  }
+}
