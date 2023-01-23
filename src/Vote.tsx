@@ -98,7 +98,7 @@ function VoteApp() {
       <div className="w-full bg-gray-500 rounded-lg h-pb dark:bg-gray-700 flex-row text-white">
         <div
           className={cx(
-            'pb-violet items-start rounded-l-lg shadow-violet shadow-lg',
+            'pb-violet items-start rounded-l-lg',
             `w-[${examPercent}%]`,
             examPercent === 100 && 'rounded-r-lg',
           )}
@@ -115,7 +115,7 @@ function VoteApp() {
         </div>
         <div
           className={cx(
-            'pb-pink rounded-r-lg items-end shadow-lg shadow-pink',
+            'pb-pink items-end rounded-r-lg',
             `w-[${hackathonPercent}%]`,
             hackathonPercent === 100 && 'rounded-l-lg',
           )}
@@ -155,38 +155,38 @@ function VoteApp() {
           <div className="font-bold">{total}</div>
         </div>
       </div>
-      <div className="rounded-lg p-8 grid grid-cols-1 sm:grid-cols-[1fr_1fr] shadow-xl gap-8 bg-gray-100">
-        <div className="text-2xl font-bold sm:col-span-2 border-b-gray-400 border-b-2 text-center">
-          Vote
+      {canVote && (
+        <div className="rounded-lg p-8 grid grid-cols-1 sm:grid-cols-[1fr_1fr] shadow-xl gap-8 bg-gray-100">
+          <div className="text-2xl font-bold sm:col-span-2 border-b-gray-400 border-b-2 text-center">
+            Vote
+          </div>
+          <button
+            type="button"
+            className="btn-violet min-w-[12rem]"
+            onClick={() => {
+              console.log('VOTE!');
+              void setDoc(doc(db, 'votes', user!.email!), {
+                vote: Vote.exam,
+                email: user!.email,
+              });
+            }}
+          >
+            Exam
+          </button>
+          <button
+            type="button"
+            className="btn-pink min-w-[12rem]"
+            onClick={() => {
+              void setDoc(doc(db, 'votes', user!.email!), {
+                vote: Vote.hackathon,
+                email: user!.email,
+              });
+            }}
+          >
+            Hackathon
+          </button>
         </div>
-        <button
-          type="button"
-          className="btn-violet w-auto min-w-[12rem]"
-          onClick={() => {
-            console.log('VOTE!');
-            void setDoc(doc(db, 'votes', user!.email!), {
-              vote: Vote.exam,
-              email: user!.email,
-            });
-          }}
-          disabled={!canVote}
-        >
-          Exam
-        </button>
-        <button
-          type="button"
-          className="btn-pink w-auto min-w-[12rem]"
-          onClick={() => {
-            void setDoc(doc(db, 'votes', user!.email!), {
-              vote: Vote.hackathon,
-              email: user!.email,
-            });
-          }}
-          disabled={!canVote}
-        >
-          Hackathon
-        </button>
-      </div>
+      )}
     </div>
   );
 }
