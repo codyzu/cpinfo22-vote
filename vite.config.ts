@@ -3,19 +3,29 @@ import react from '@vitejs/plugin-react';
 import unocss from 'unocss/vite';
 import presetUno from '@unocss/preset-uno';
 import presetIcons from '@unocss/preset-icons';
+import presetWebFonts from '@unocss/preset-web-fonts';
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     unocss({
-      presets: [presetUno(), presetIcons()],
+      presets: [
+        presetUno(),
+        presetIcons(),
+        presetWebFonts({
+          provider: 'fontshare',
+          fonts: {
+            sans: 'Public Sans:400,700',
+          },
+        }),
+      ],
       safelist: [...Array.from({length: 101}, (_, i) => `w-[${i}%]`)],
       shortcuts: [
-        {btn: 'py-2 px-4 font-semibold rounded-lg shadow-md'},
+        {btn: 'py-2 px-4 font-semibold rounded-lg shadow-lg'},
         [
           /^btn-(.*)$/,
           ([, c]) =>
-            `bg-${c}-700 text-${c}-100 border-2 border-${c}-800 btn active:bg-${c}-800 disabled:bg-${c}-900 disabled:active:bg-${c}-900 disabled:text-${c}-500`,
+            `btn bg-${c}-700 text-${c}-100 shadow-${c} active:bg-${c}-800 disabled:bg-${c}-900 disabled:active:bg-${c}-900 disabled:text-${c}-500`,
         ],
         [
           /^pb-(.*)$/,
