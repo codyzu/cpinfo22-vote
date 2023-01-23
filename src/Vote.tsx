@@ -133,7 +133,7 @@ function VoteApp() {
       </div>
       <div className="rounded-lg p-8 shadow-xl border-gray-600 bg-gray-100">
         <div className="grid grid-cols-[auto_1fr] gap-2 gap-x-2">
-          <div className="text-2xl font-bold col-span-2 border-b-gray-400 border-b-2 text-center">
+          <div className="text-2xl font-bold col-span-2 border-b-gray-400 border-b-4 text-center border-double">
             Results
           </div>
 
@@ -157,7 +157,7 @@ function VoteApp() {
       </div>
       {canVote && (
         <div className="rounded-lg p-8 grid grid-cols-1 sm:grid-cols-[1fr_1fr] shadow-xl gap-8 bg-gray-100">
-          <div className="text-2xl font-bold sm:col-span-2 border-b-gray-400 border-b-2 text-center">
+          <div className="text-2xl font-bold sm:col-span-2 border-b-gray-400 border-b-4 text-center border-double">
             Vote
           </div>
           <button
