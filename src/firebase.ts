@@ -6,7 +6,7 @@ import {initializeApp} from 'firebase/app'; // eslint-disable-line n/file-extens
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: 'AIzaSyCIkUfO0jHxWwDYGNUInPl6ZQZoI1TxiQM',
-  authDomain: 'cpinfo22-final-vote.firebaseapp.com',
+  authDomain: 'vote.cpinfo22.codyfactory.eu',
   projectId: 'cpinfo22-final-vote',
   storageBucket: 'cpinfo22-final-vote.appspot.com',
   messagingSenderId: '943433121120',
